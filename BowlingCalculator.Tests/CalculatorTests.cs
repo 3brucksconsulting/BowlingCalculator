@@ -14,7 +14,7 @@ namespace BowlingCalculator.Tests
         }
 
         [Fact]
-        public void CalculateScore_GivenAllZeros_Returns0()
+        public void CalculateScore_GivenAllGutters_Returns0()
         {
             AddRepeatedRolls(0, 20);
 
@@ -55,6 +55,16 @@ namespace BowlingCalculator.Tests
             result.Should().Be(26);
         }
 
+        [Fact]
+        public void CalculateScore_GivenAPerfectGame_Returns300()
+        {
+            AddRepeatedRolls(10, 12);
+
+            var result = _sut.CalculateScore();
+
+            result.Should().Be(300);
+        }
+
         private void AddRolls(params int[] rolls)
         {
             rolls.ToList().ForEach(x => _sut.AddRoll(x));
@@ -64,6 +74,5 @@ namespace BowlingCalculator.Tests
         {
             Enumerable.Repeat(roll, count).ToList().ForEach(x => _sut.AddRoll(x));
         }
-
     }
 }
