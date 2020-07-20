@@ -23,5 +23,17 @@ namespace BowlingCalculator.Tests
 
             result.Should().Be(0);
         }
+
+        [Fact]
+        public void GetScore_GivenAllOnes_Returns20()
+        {
+            var sut = new Frame();
+
+            Enumerable.Repeat(1, 20).ToList().ForEach(x => sut.AddRoll(x));
+
+            var result = sut.GetScore();
+
+            result.Should().Be(20);
+        }
     }
 }
