@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 
 namespace BowlingCalculator
 {
@@ -18,23 +17,30 @@ namespace BowlingCalculator
             int rollIndex = 0;
             int score = 0;
 
+            Func<bool>
+                isStrike = () => _rolls[rollIndex] == 10,
+                isSpare = () => _rolls[rollIndex] + _rolls[rollIndex + 1] == 10;
+
+            Func<int>
+                calculateStrike = () => 10 + _rolls[rollIndex + 1] + _rolls[rollIndex + 2],
+                calculateSpare = () => 10 + _rolls[rollIndex + 2],
+                calculateOpenFrame = () => _rolls[rollIndex] + _rolls[rollIndex + 1];
+
             for (var frame = 0; frame < 10; frame++)
             {
-                // Strike
-                if (_rolls[rollIndex] == 10)
+                if (isStrike())
                 {
-                    score += 10 + _rolls[rollIndex + 1] + _rolls[rollIndex + 2];
+                    score += calculateStrike();
                     rollIndex++;
                 }
-                // Spare
-                else if (_rolls[rollIndex] + _rolls[rollIndex + 1] == 10)
+                else if (isSpare())
                 {
-                    score += 10 + _rolls[rollIndex + 2];
+                    score += calculateSpare();
                     rollIndex += 2;
                 }
                 else
                 {
-                    score += _rolls[rollIndex] + _rolls[rollIndex + 1];
+                    score += calculateOpenFrame();
                     rollIndex += 2;
                 }
             }

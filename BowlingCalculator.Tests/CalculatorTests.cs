@@ -1,6 +1,6 @@
+using FluentAssertions;
 using System.Linq;
 using Xunit;
-using FluentAssertions;
 
 namespace BowlingCalculator.Tests
 {
