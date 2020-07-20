@@ -15,7 +15,25 @@ namespace BowlingCalculator
 
         public int CalculateScore()
         {
-            return _rolls.Sum();
+            int rollIndex = 0;
+            int score = 0;
+
+            for (var frame = 0; frame < 10; frame++)
+            {
+                // Spare
+                if (_rolls[rollIndex] + _rolls[rollIndex + 1] == 10)
+                {
+                    score += 10 + _rolls[rollIndex + 2];
+                }
+                else
+                {
+                    score += _rolls[rollIndex] + _rolls[rollIndex + 1];
+                }
+
+                rollIndex += 2;
+            }
+
+            return score;
         }
     }
 }
