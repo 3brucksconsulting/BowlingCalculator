@@ -65,6 +65,16 @@ namespace BowlingCalculator.Tests
             result.Should().Be(300);
         }
 
+        [Fact]
+        public void CalculateScore_GivenRandomCompleteGame_Returns174()
+        {
+            AddRolls(8, 1, 10, 10, 10, 8, 2, 3, 6, 9, 0, 9, 1, 9, 1, 7, 3, 10);
+
+            var result = _sut.CalculateScore();
+
+            result.Should().Be(174);
+        }
+
         private void AddRolls(params int[] rolls)
         {
             rolls.ToList().ForEach(x => _sut.AddRoll(x));
