@@ -20,17 +20,23 @@ namespace BowlingCalculator
 
             for (var frame = 0; frame < 10; frame++)
             {
+                // Strike
+                if (_rolls[rollIndex] == 10)
+                {
+                    score += 10 + _rolls[rollIndex + 1] + _rolls[rollIndex + 2];
+                    rollIndex++;
+                }
                 // Spare
-                if (_rolls[rollIndex] + _rolls[rollIndex + 1] == 10)
+                else if (_rolls[rollIndex] + _rolls[rollIndex + 1] == 10)
                 {
                     score += 10 + _rolls[rollIndex + 2];
+                    rollIndex += 2;
                 }
                 else
                 {
                     score += _rolls[rollIndex] + _rolls[rollIndex + 1];
+                    rollIndex += 2;
                 }
-
-                rollIndex += 2;
             }
 
             return score;

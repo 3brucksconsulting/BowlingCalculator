@@ -36,7 +36,7 @@ namespace BowlingCalculator.Tests
         [Fact]
         public void CalculateScore_GivenSpareNine_Returns28()
         {
-            AddRolls(8, 2, 9);
+            AddRolls(8, 2, 9, 0);
             AddRepeatedRolls(0, 17);
 
             var result = _sut.CalculateScore();
@@ -44,6 +44,16 @@ namespace BowlingCalculator.Tests
             result.Should().Be(28);
         }
 
+        [Fact]
+        public void CalculateScore_GivenStrikeEight_Returns26()
+        {
+            AddRolls(10, 6, 2);
+            AddRepeatedRolls(0, 16);
+
+            var result = _sut.CalculateScore();
+
+            result.Should().Be(26);
+        }
 
         private void AddRolls(params int[] rolls)
         {
