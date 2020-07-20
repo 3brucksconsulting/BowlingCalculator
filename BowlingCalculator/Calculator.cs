@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace BowlingCalculator
 {
-    public class Frame
+    public class Calculator
     {
         private int[] _rolls = new int[21];
         private int _nextRoll = 0;
@@ -13,7 +13,7 @@ namespace BowlingCalculator
             _rolls[_nextRoll++] = pin;
         }
 
-        public int GetScore()
+        public int CalculateScore()
         {
             return _rolls.Sum();
         }
